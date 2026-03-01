@@ -1,0 +1,60 @@
+version: 2
+
+updates:
+  # ----------------------------
+  # NPM Dependencies (Next.js)
+  # ----------------------------
+  - package-ecosystem: "npm"
+    directory: "/"              # Location of package.json
+    schedule:
+      interval: "weekly"        # daily | weekly | monthly
+      day: "sunday"
+      time: "04:00"
+      timezone: "Asia/Colombo"
+
+    open-pull-requests-limit: 10
+
+    versioning-strategy: increase
+
+    labels:
+      - "dependencies"
+      - "npm"
+      - "auto-update"
+
+    commit-message:
+      prefix: "chore"
+      include: "scope"
+
+    groups:
+      nextjs:
+        patterns:
+          - "next"
+          - "react"
+          - "react-dom"
+
+      eslint:
+        patterns:
+          - "eslint*"
+
+      testing:
+        patterns:
+          - "jest*"
+          - "@testing-library/*"
+
+  # ----------------------------
+  # GitHub Actions Updates
+  # ----------------------------
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "sunday"
+      time: "04:30"
+      timezone: "Asia/Colombo"
+
+    labels:
+      - "dependencies"
+      - "github-actions"
+
+    commit-message:
+      prefix: "ci"
